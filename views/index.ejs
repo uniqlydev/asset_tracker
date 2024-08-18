@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles/resource.css">
+    <link rel="stylesheet" href="/styles/index.css">
+    <script src="/scripts/login.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="image-container">
+            <img src="/images/results.png" alt="results logo">
+        </div>
+
+        <div class="login-container">
+            <!-- Login Form -->
+            <form id="login_form" action="">
+                <div class="form-container">
+                    <h1>Sign in</h1>
+                    <input id="login_email" name="email" type="text" placeholder="Your email" required>
+                    <input id="login_password" name="password" type="password" placeholder="Your password" required>
+                    <button type="button" id="sign_in">Sign in</button>
+                </div>
+            </form>
+
+            <div class="seperator">
+                <div class="line"></div>
+                <div class="or">or</div>
+                <div class="line"></div>
+            </div>
+
+            <!-- Registration Form -->
+            <form id="register_form" action="">
+                <div class="form-container">
+                    <h1>Sign up</h1>
+                    <input name="email" type="text" placeholder="Your email" required>
+                    <input name="username" type="text" placeholder="Your username" required>
+                    <input name="password" type="password" placeholder="Your password" required>
+                    <input name="confirmPassword" type="password" placeholder="Confirm password" required>
+                    <button type="button" id="sign_up">Sign up</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</body>
+</html>

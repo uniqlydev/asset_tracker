@@ -1,0 +1,115 @@
+body {
+    font-family: var(--font);
+    background-color: var(--primary-bg);
+    margin: 0; /* Ensure there is no default margin */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    align-items: stretch; /* Stretch items to fill the height */
+    width: 100%; /* Full width of the viewport */
+    max-width: 1200px; /* Optional: maximum width constraint */
+    height: 100%; /* Full height of the viewport */
+}
+
+.image-container {
+    flex: 1; /* Take up remaining space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: auto; /* Maintain aspect ratio */
+    height: 20%; /* Adjust height relative to container */
+    max-width: 100%; /* Prevent image from exceeding container width */
+}
+
+.login-container {
+    flex: 1; /* Take up remaining space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px; /* Add padding around the login container */
+    border-radius: 10px; /* Optional: rounded corners */
+    width: 100%; /* Full width of the container */
+}
+
+.form-container {
+    padding: 20px; /* Add padding inside the form container */
+    border-radius: 10px; /* Optional: rounded corners */
+    width: 100%; /* Full width of the container */
+    max-width: 400px; /* Limit max width of the form container */
+}
+
+.login-container h1 {
+    color: var(--text-color);
+    margin-bottom: 20px; /* Space between the heading and inputs */
+}
+
+input[type="text"],
+input[type="password"] {
+    color: var(--text-color);
+    border: 1px solid var(--accent-color); /* Border styling */
+    padding: 10px; /* Padding inside inputs */
+    margin-bottom: 10px; /* Space between input fields */
+    width: 100%; /* Full width of the container */
+    max-width: 300px; /* Limit max width of inputs */
+    border-radius: 5px; /* Optional: rounded corners for inputs */
+}
+
+/* Input color when pressed */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: var(--accent-color);
+}
+
+input::placeholder {
+    color: var(--muted-text);
+}
+
+button {
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px; /* Space between inputs and button */
+    width: 100%; /* Full width of the container */
+    max-width: 300px; /* Limit max width of the button */
+    border-radius: 5px; /* Optional: rounded corners for button */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.seperator {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    margin: 20px 0; /* Space above and below the separator */
+    width: 100%; /* Full width of the container */
+    max-width: 400px; /* Limit max width of the separator */
+    position: relative; /* Position relative to use pseudo-elements */
+}
+
+.seperator .line {
+    flex: 1; /* Take up remaining space */
+    height: 1px; /* Line thickness */
+    background-color: var(--muted-text); /* Line color */
+}
+
+.seperator .or {
+    color: var(--muted-text);
+    text-transform: uppercase; /* Uppercase the "or" text */
+    font-size: 14px; /* Adjust font size as needed */
+    font-weight: bold; /* Make the "or" text bold */
+    margin: 0 10px; /* Space on either side of the "or" text */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Center the "or" text */
+    background: var(--primary-bg); /* Background color to match body */
+    padding: 0 5px; /* Add some padding around the "or" text */
+}
