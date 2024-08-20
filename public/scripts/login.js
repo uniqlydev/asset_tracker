@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const email = document.getElementById('login_email').value;
         const password = document.getElementById('login_password').value;
 
-        fetch('/api/users/login'), {
+        fetch('/api/users/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -14,16 +14,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 email: email,
                 password: password
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                if (data.error) {
-                    alert(data.error);
-                } else {
-                    window.location.href = '/dashboard';
-                }
-            })
-        }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.error) {
+                alert(data.error);
+            } else {
+                window.location.href = '/dashboard';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     });
 
 });
