@@ -68,9 +68,12 @@ const login = async (req:LoginRequest, res:any) => {
         return res.status(400).json({ message: 'Invalid credentials' });
     }
 
+    require('dotenv').config();
     const token = jwt.sign({ email }, process.env.JWT_SECRET || 'defaultSecret' );
 
     const site_from = await user.fromSite(email);
+
+
 
     // Create session
     req.session.token = token;
@@ -80,8 +83,11 @@ const login = async (req:LoginRequest, res:any) => {
         site_origin: site_from
     };
 
+    console.log('User authenticated:', req.session.user);
+
     res.status(200).json({
         message: 'User logged in successfully',
+        session: req.session,
         token
     });
 };

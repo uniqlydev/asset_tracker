@@ -1,41 +1,20 @@
-import Asset from "./asset";
-import SiteModel from "./SiteModel";
-import User from "./userModel";
-import pool from "./database";
-
 class AssetTransfer {
-    id: string;
-    assetToBeTransferred: Asset;
-    origin: SiteModel;
-    destination: SiteModel;
-    createdBy: User;
-    receivedBy: User;
-    status: string = "Pending";
+    public id : number;
+    public asset_id : number;
+    public quantity : number;
+    public origin_site_id : number;
+    public destination_site_id : number;
+    public status : string;
 
-    constructor(id: string, assetToBeTransferred: Asset, origin: SiteModel, destination: SiteModel, createdBy: User, receivedBy: User) {
+    constructor(id : number, asset_id : number, quantity:number ,origin_site_id : number, destination_site_id : number, status : string) {
         this.id = id;
-        this.assetToBeTransferred = assetToBeTransferred;
-        this.origin = origin;
-        this.destination = destination;
-        this.createdBy = createdBy;
-        this.receivedBy = receivedBy;
-    }
-
-    updateStatus(status: string) {
+        this.asset_id = asset_id;
+        this.quantity = quantity;
+        this.origin_site_id = origin_site_id;
+        this.destination_site_id = destination_site_id;
         this.status = status;
-
-        pool.query('UPDATE asset_transfers SET status = $1 WHERE id = $2', [status, this.id], (error: any, results: any) => {
-            if (error) {
-                throw error;
-            }
-        });
-
-        return this.status;
     }
 
-    save() {
-
-    }
 
 }
 

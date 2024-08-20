@@ -1,28 +1,26 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
+import 'dotenv/config';
 
 const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
-    const token = req.header('Authorization')?.replace('Bearer ', '');
+    // Extract token from 'Authorization' header
+    const authHeader = req.header('Authorization');
+    const token = authHeader?.startsWith('Bearer ') ? authHeader.substring(7) : null;
 
-    if (!token) return res.status(401).json({ message: 'Access denied' });
+    if (!token) {
+        return res.status(401).json({ message: 'Access denied' });
+    }
 
+    // Verify token
     jwt.verify(token, process.env.JWT_SECRET || 'defaultSecret', (err, user) => {
-      if (err) return res.status(403).json({ message: 'Invalid token' });
+        if (err) {
+            return res.status(403).json({ message: 'Invalid token' });
+        }
 
-      // Store token in session
-      req.session.token = token;
-
-      // Set session data based on JWT payload
-      req.session.user = {
-        email: (user as any).email,
-        authenticated: true,
-        site_origin: (user as any).site_from,
-      };
-
-      console.log('User authenticated:', req.session.user.email);
-
-      next();
+        // Attach user information to request object
+        (req as any).user = user;
+        next();
     });
-  };
+};
 
 export default authenticateToken;

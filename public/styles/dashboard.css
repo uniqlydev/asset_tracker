@@ -1,0 +1,153 @@
+body {
+    background-color: var(--primary-bg);
+    font-family: var(--font);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* Centering content horizontally */
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px; /* Set a max width if needed */
+    margin: 0 auto;
+    display: flex; /* Added display flex for better layout management */
+    justify-content: space-between; /* Space between left and right columns */
+    align-items: center; /* Center vertically */
+}
+
+.left, .right {
+    flex: 1;
+}
+
+.left, .right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container {
+    max-width: 600px;
+    width: 100%;
+    padding: 50px;
+    border-radius: 8px;
+    background-color: var(--primary-bg); /* White background for better visibility */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding shadow for form-container */
+    position: relative; /* Set position relative to use absolute positioning for the button */
+}
+
+button {
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute; /* Position absolute to center it */
+    left: 50%; /* Move to the center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    bottom: 10px; /* Increased spacing from the bottom of the container */
+}
+
+button:hover {
+    background-color: #3057d0; /* Slightly darker blue for hover effect */
+}
+
+
+.left {
+    padding: 40px;
+}
+
+.welcome {
+    text-align: center;
+    color: var(--text-color);
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.welcome #username {
+    color: var(--accent-color);
+    font-size: 30px;
+}
+
+.label-form {
+    text-align: center;
+    margin: 20px 0;
+    color: var(--text-color);
+    font-size: 24px; /* Adjust font size if needed */
+    font-weight: 600; /* Make the font slightly bolder */
+    letter-spacing: 0.5px; /* Add a bit of letter spacing for better readability */
+    text-transform: uppercase; /* Make text uppercase if you prefer */
+    border-bottom: 2px solid var(--accent-color); /* Add a bottom border with accent color */
+    padding-bottom: 10px; /* Space between text and bottom border */
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: var(--text-color);
+    font-size: 20px;
+}
+.form-group {
+    margin-bottom: 15px;
+    position: relative; /* Added relative positioning for pseudo-element */
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    color: var(--text-color);
+    font-size: 16px; /* Ensuring label font size consistency */
+    position: relative; /* For positioning pseudo-element */
+    padding: 5px 10px; /* Adding padding for better appearance */
+    background-color: var(--primary-bg); /* Background color to match navbar */
+    border-radius: 4px; /* Rounded corners for label */
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.form-group .icon {
+    margin-right: 8px; /* Space between icon and text */
+    color: var(--accent-color); /* Accent color for icons */
+    font-size: 18px; /* Size of the icon */
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--muted-text);
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+/* Change the border color to accent color on focus */
+.form-group input:focus {
+    border-color: var(--accent-color); /* Accent color for input focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Additional styling to mimic gooey effect */
+@keyframes gooeyEffect {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.form-group label:hover::after,
+.form-group label:focus-within::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--accent-color);
+    border-radius: 4px;
+    z-index: -1;
+    opacity: 0.3;
+    animation: gooeyEffect 0.5s ease-in-out;
+}

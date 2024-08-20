@@ -1,8 +1,8 @@
 :root {
     --primary-bg: #ffffff; /* White background for a clean, modern look */
-    --secondary-bg: #f0f0f0; /* Light gray for subtle contrast in cards/panels */
-    --accent-color: #32CD32; /* Light green from the ResultsPH logo */
-    --text-color: #002855; /* Dark blue, maintaining a link to Results' primary color */
-    --muted-text: #555555; /* Dark gray for secondary text */
-    --font: 'Inter', sans-serif; /* Main font */
+    --secondary-bg: #eaeef6; /* Light blue background for a softer look */
+    --accent-color: #406ff3; /* Blue color for accents, matching .navbar__item:last-child:before */
+    --text-color: #002855; /* Dark blue for main text */
+    --muted-text: #6a778e; /* Grayish color for secondary text, matching .navbar__link color */
+    --font: 'Open Sans', sans-serif; /* Main font */
 }
