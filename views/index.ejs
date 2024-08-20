@@ -6,11 +6,19 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="/styles/resource.css">
     <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="/styles/spinner.css">
     <script src="/scripts/login.js"></script>
 </head>
 <body>
 
-    <div class="container">
+
+    <section id="loading" class="sec-loading" style="display: none;">
+        <div class="one">
+        </div>
+    </section>
+
+
+    <div class="container" id = "form_container" style="display: flex;">
         <div class="image-container">
             <img src="/images/results.png" alt="results logo">
         </div>

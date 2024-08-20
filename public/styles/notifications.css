@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Mochiy+Pop+P+One&family=Montserrat&family=Oswald:wght@300&family=Varela+Round&family=ZCOOL+KuaiLe&display=swap');
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+}
+
+.top-right {
+    position: fixed; /* Use fixed positioning to keep it in the viewport */
+    top: 20px; /* Space from the top of the viewport */
+    right: 20px; /* Space from the right of the viewport */
+    display: flex;
+    flex-direction: column; /* Stack notifications vertically */
+    align-items: flex-end; /* Align notifications to the right */
+    z-index: 1000; /* Ensure it's above other content */
+  }
+
+  .top-right > div {
+    margin: 10px; /* Space between notifications */
+    opacity: 0; /* Start with notifications hidden */
+    transition: opacity 0.5s ease-in-out; /* Smooth transition for appearance */
+    background-color: var(--secondary-bg);
+    border-radius: 5px;
+    width: 220px;
+    height: 30px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Lessen shadow to match form-container */
+    color: var(--text-color);
+  }
+
+  .top-right.show > .check,
+  .top-right.show > .warning,
+  .top-right.show > .danger {
+    opacity: 1; /* Show notification when .show class is added */
+  }
+
+  .check {
+    color: #0ad406;
+  }
+
+  .check:hover {
+    background-color: rgba(147, 209, 117, 0.50);
+    transition: 0.5s;
+  }
+
+  span {
+    font-size: 15px;
+  }
+
+  .info {
+    color: var(--accent-color);
+  }
+
+  .info:hover {
+    background-color: rgba(64, 111, 243, 0.50);
+    transition: 0.5s;
+  }
+
+  .warning {
+    color: rgb(247, 149, 72);
+  }
+
+  .warning:hover {
+    background-color: rgba(247, 149, 73, 0.50);
+    transition: 0.5s;
+  }
+
+  .danger {
+    color: rgb(255, 10, 1);
+  }
+
+  .danger:hover {
+    background-color: rgba(255, 10, 1, 0.33);
+    transition: 0.5s;
+  }
+
+  .icon {
+    margin-right: 10px; /* Space between icon and text */
+    width: 24px; /* Adjust icon size */
+    height: 24px; /* Adjust icon size */
+  }
+
+  .rotate {
+    animation: rotate 2s linear infinite;
+  }
+
+  .shine {
+    animation: shine 2s linear infinite;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    20% {
+      transform: rotate(90deg);
+    }
+    40% {
+      transform: rotate(0deg);
+    }
+    80% {
+      transform: rotate(-90deg);
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      color: var(--text-color);
+    }
+    50% {
+      text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px red, /* Reduce shadow intensity */
+        0 0 30px red,
+        0 0 40px red;
+    }
+  }

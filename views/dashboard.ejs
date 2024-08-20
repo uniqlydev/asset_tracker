@@ -7,11 +7,33 @@
     <link rel="stylesheet" href="/styles/resource.css">
     <link rel="stylesheet" href="/styles/dashboard.css">
     <link rel="stylesheet" href="/styles/navbar.css">
+    <link rel="stylesheet" href="/styles/notifications.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="/scripts/dashboard.js" defer></script>
     <script src="/scripts/navbar.js"></script>
 </head>
 <body>
+
+    <div class="top-right">
+        <div class="check" style="display: none;">
+            <i data-feather="check-circle" class="icon"></i>
+            &nbsp; &nbsp;
+            <span>Transfer Created!</span>
+        </div>
+
+        <div class="warning" style="display: none;">
+            <i data-feather="alert-triangle" class="icon rotate"></i>
+            &nbsp; &nbsp;
+            <span>Please fill out all the fields</span>
+        </div>
+
+        <div class="danger" style="display: none;">
+            <i data-feather="x-circle" class="icon shine"></i>
+            &nbsp; &nbsp;
+            <span>Please verify your input</span>
+        </div>
+    </div>
+
     <div class="container">
         <div class="left">
             <h1 class="welcome">
