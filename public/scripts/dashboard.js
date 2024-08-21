@@ -1,6 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
     const submit = document.getElementById('submitbtn');
     const notifications = document.querySelector('.top-right');
+    const loadingScreen = document.getElementById('loading');
+    const container = document.getElementById('container');
+
+    const navbar__link = document.querySelector('.navbar__link');
+
+
+    const toggleLoadingScreen = (show) => {
+        if (show) {
+            loadingScreen.style.display = 'flex';
+            container.style.display = 'none';
+
+        } else {
+            loadingScreen.style.display = 'none';
+        }
+    };
+
+    navbar__link.addEventListener('click', () => {
+        toggleLoadingScreen(true);
+    })
+
 
     submit.addEventListener('click', () => {
         const id = parseInt(document.getElementById('id').value);

@@ -67,11 +67,28 @@ app.get('/dashboard', async (req, res) => {
         return res.status(400).json({ message: 'Invalid session data' });
     }
 
-    res.render('dashboard', {
+    res.render('dashboard/dashboard', {
         username: req.session.user.email,
     })
 });
 
+app.get('/records', async (req, res) => {
+    res.render('dashboard/records');
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Failed to destroy session:', err);
+            return res.status(500).json({ message: 'Failed to destroy session' });
+        }
+
+        res.redirect('/');
+    });
+});
+
+
+/
 
 // Start the server
 server.listen(port, () => {
