@@ -1,5 +1,5 @@
 import TransferRequest from "../Interface/TransferReqest";
-import AssetTransfer from "../models/AssetTransfer";
+import AssetTransfer from "../models/assetTransfer";
 import pool from "../models/database";
 
 
@@ -15,9 +15,9 @@ const transferAsset = async (req: TransferRequest, res: any) => {
     console.log(transfer);
 
     try {
-        const query = "INSERT INTO asset_transfers (asset_id, quantity, origin_site_id, destination_site_id, status, description) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *";
+        const query = "INSERT INTO asset_transfers (asset_id, quantity, origin_site_id, destination_site_id, status, description, created_by) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *";
 
-        const values = [transfer.asset_id, transfer.quantity, parseInt(transfer.origin_site_id.toString()), transfer.destination_site_id, transfer.status, description];
+        const values = [transfer.asset_id, transfer.quantity, parseInt(transfer.origin_site_id.toString()), transfer.destination_site_id, transfer.status, description, req.session.user!.email];
 
         const result = await pool.query(query, values);
 

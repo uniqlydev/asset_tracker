@@ -6,40 +6,36 @@
     <title>Records</title>
     <link rel="stylesheet" href="/styles/resource.css">
     <link rel="stylesheet" href="/styles/records.css">
+    <script src="/scripts/records.js"></script>
 </head>
 <body>
-    <div class="records-container">
-        <ul>
+    <div class="box">
+        <% records.forEach((record, index) => { %>
+            <% if (index % 3 === 0) { %> <!-- Start a new list every 3 records -->
+                <ul class="dynamic-list">
+            <% } %>
+
             <li>
-                <div class="record">
-                    <h2>Toilet Paper</h2>
-                    <p>
-                        Quantity:
-                        <span class="quantiy">
-                            10
-                        </span>
-                    </p>
-                    <p>
-                        Origin:
-                        <span class="origin">
-                            Manila
-                        </span>
-                    </p>
-                    <p>
-                        Destination:
-                        <span class="destination">
-                            Cebu
-                        </span>
-                    </p>
-                    <p>
-                        Status:
-                        <span class="status">
-                            In Process
-                        </span>
-                    </p>
+                <span></span>
+                <div class="title"><%= record.id %></div>
+                <div class="info"><%= record.description %></div>
+                <div class="name"><%= record.created_by %></div>
+                <div class="name"><%= record.destination_site_name %></div>
+                <div class="time">
+                    <span>
+                        <%= new Date(record.created_at).toLocaleString('en-US', { month: 'short', day: 'numeric' }) %><sup>th</sup>
+                    </span>
+                    <span><%= new Date(record.created_at).toLocaleTimeString('en-US') %></span>
                 </div>
             </li>
-        </ul>
+
+            <% if (index % 3 === 2 || index === records.length - 1) { %> <!-- Close the list after 3 records or at the end -->
+                </ul>
+                <div class="arrow" id="btn<%= Math.floor(index / 3) + 1 %>">
+                    <!-- SVG code here -->
+                </div>
+            <% } %>
+        <% }) %>
     </div>
 
     <%- include('partials/navbar.ejs') %>

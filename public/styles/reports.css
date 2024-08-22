@@ -1,0 +1,103 @@
+body {
+    /* Center everything */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.folder-container {
+    background-color: var(--primary-bg);
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
+    height: 400px;
+    width: 300px;
+}
+
+.folder-container h1 {
+    color: var(--accent-color);
+}
+
+.dropdown__text {
+    cursor: pointer;
+    color: var(--primary-bg);
+}
+
+.dropdown {
+    position: relative;
+    width: 230px;
+    filter: url(#goo);
+
+}
+
+.dropdown__face,
+.dropdown__items {
+    background-color: var(--accent-color);
+    padding: 20px;
+    border-radius: 25px;
+}
+
+.dropdown__face {
+    display: block;
+    position: relative;
+}
+
+.dropdown__items {
+    margin: 20px;
+    position: absolute;
+    left: -20px;
+    top: 100%; /* Adjusted to start below the dropdown face */
+    width: 80%;
+    list-style: none;
+    display: flex;
+    flex-direction: column; /* Changed to column for vertical listing */
+    align-items: flex-start; /* Align items to the start */
+    visibility: hidden;
+    z-index: -1;
+    opacity: 0;
+    color: var(--primary-bg);
+    transition: all 0.4s cubic-bezier(0.93, 0.88, 0.1, 0.8);
+}
+
+.dropdown__items::before {
+    content: "";
+    background-color: var(--accent-color);
+    position: absolute;
+    bottom: 100%;
+    right: 20%;
+    height: 40px;
+    width: 20px;
+}
+
+.dropdown__arrow {
+    border-bottom: 2px solid var(--primary-bg);
+    border-right: 2px solid var(--primary-bg);
+    position: absolute;
+    top: calc(50% - 5px); /* Adjusted to center arrow vertically */
+    right: 30px;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    transform-origin: right;
+}
+
+a {
+    color: var(--primary-bg);
+    text-decoration: none;
+}
+
+.dropdown input {
+    display: none;
+}
+
+.dropdown input:checked ~ .dropdown__items {
+    visibility: visible;
+    opacity: 1;
+}
+
+.reportsdrop {
+    display: none;
+}

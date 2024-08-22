@@ -5,6 +5,7 @@ import crypto from 'crypto';
 import bodyparser from 'body-parser';
 import ws from 'ws';
 import http from 'http';
+import pool from './models/database';
 
 // Create express app
 const app = express();
@@ -73,8 +74,45 @@ app.get('/dashboard', async (req, res) => {
 });
 
 app.get('/records', async (req, res) => {
-    res.render('dashboard/records');
+    const siteOrigin = req.session.user!.site_origin; // Extract site_origin from session
+
+    const query = `
+    SELECT
+        a.name AS id,
+        at.description as description,
+        s_origin.name AS origin_site_name,
+        at.created_by as created_by,
+        at.created_at as created_at,
+        s_dest.name AS destination_site_name
+    FROM
+        asset_transfers at
+    JOIN
+        assets a ON at.asset_id = a.id
+    JOIN
+        site s_origin ON at.origin_site_id = s_origin.id
+    JOIN
+        site s_dest ON at.destination_site_id = s_dest.id
+    WHERE
+        at.origin_site_id = $1
+    `;
+
+    try {
+        const result = await pool.query(query, [siteOrigin]); // Pass site_origin as parameter
+        const rows = result.rows; // Extract rows from the result object
+
+        console.log(rows);
+
+        res.render('dashboard/records', { records: rows }); // Pass the rows to the EJS template
+    } catch (err) {
+        console.error('Failed to fetch records:', err);
+        res.status(500).json({ message: 'Failed to fetch records' });
+    }
 });
+
+
+app.get('/reports', (req,res) => {
+    res.render('dashboard/reports');
+})
 
 app.get('/logout', (req, res) => {
     req.session.destroy((err) => {
@@ -88,7 +126,6 @@ app.get('/logout', (req, res) => {
 });
 
 
-/
 
 // Start the server
 server.listen(port, () => {

@@ -1,56 +1,144 @@
-body {
-    background-color: var(--primary-bg);
-    font-family: var(--font);
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center; /* Centering content horizontally */
-}
-
-.records-container {
-    /* Center all elements */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-}
-
-.records-container ul {
+/* Scope all styles within the .box class to avoid conflicts with other elements */
+.box ul {
     list-style-type: none;
-    padding: 0;
-}
-
-.records-container ul li {
-    background-color: var(--primary-bg);
-    border-radius: 10px;
-    margin: 10px;
-    padding: 10px;
-    width: 500px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.records-container ul li .record {
-    /* Center but list them down  */
+    margin: 0;
+    padding-top: 200px;
+    padding-bottom: 100px;
+    position: relative;
+    transition: all 0.5s linear;
     display: flex;
     flex-direction: column;
-    align-items: center;
-
-    /* Make the record take up the full width */
-    width: 100%;
-
+    align-items: center; /* Center the list items */
 }
 
-.records-container ul li .record h2 {
-    margin-right: 10px;
-
-    color: var(--accent-color);
+.box .arrow {
+    display: none; /* Hide the arrow */
 }
 
-.records-container ul li .record p {
-    margin-right: 10px;
+.box ul:last-of-type {
+    top: 80px;
+}
+
+.box ul:before {
+    content: "";
+    display: block;
+    width: 1px; /* Adjusted width for dashed line */
+    height: 100%;
+    border: 1px dashed var(--muted-text);
+    position: absolute;
+    top: 0;
+    left: 50%; /* Center the dashed line */
+    transform: translateX(-50%);
+}
+
+.box ul li {
+    margin: 20px 0;
+    position: relative;
+    padding: 15px 25px;
+    background: var(--secondary-bg);
+    color: var(--text-color);
+    border-radius: 10px;
+    line-height: 1.5;
+    width: 30%; /* Adjust width for better centering */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.box ul li > span {
+    content: "";
+    display: block;
+    width: 1px; /* Adjusted width for vertical line */
+    height: 100%;
+    border: 1px solid var(--accent-color);
+    position: absolute;
+    top: 0;
+    left: -30px;
+}
+
+.box ul li > span:before,
+.box ul li > span:after {
+    content: "";
+    display: block;
+    width: 12px; /* Adjusted size for dots */
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    border: 2px solid var(--primary-bg);
+    position: absolute;
+    left: -6px;
+}
+
+.box ul li > span:before {
+    top: -10px;
+}
+
+.box ul li > span:after {
+    top: calc(100% - 10px);
+}
+
+.box .title {
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--text-color); /* Ensure title color matches text color */
+}
+
+.box .info:first-letter {
+    text-transform: capitalize;
+    line-height: 1.7;
+}
+
+.box .name {
+    margin-top: 10px;
+    text-transform: capitalize;
+    font-style: italic;
+    text-align: right;
+    margin-right: 20px;
+}
+
+.box .time span {
+    position: absolute;
+    left: -100px;
+    color: var(--muted-text); /* Updated time text color */
+    font-size: 80%;
+    font-weight: bold;
+}
+
+.box .time span:first-child {
+    top: -16px;
+}
+
+.box .time span:last-child {
+    top: 94%;
+}
+
+.box .arrow {
+    position: absolute;
+    top: 105%;
+    left: 50%;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    transform: translateX(-50%);
+}
+
+.box .arrow:hover {
+    animation: arrow 1s linear infinite;
+}
+
+.box ul:last-of-type .arrow {
+    transform: rotateX(180deg) translateX(-50%);
+}
+
+.box svg {
+    width: 20px;
+    height: 20px;
+}
+
+@keyframes arrow {
+    0%, 100% {
+        top: 105%;
+    }
+    50% {
+        top: 106%;
+    }
 }

@@ -6,6 +6,7 @@ interface TransferRequest extends Request {
         quantity: number;
         where: number;
         description: string;
+        who: number;
     };
 }
 

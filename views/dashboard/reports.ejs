@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <link rel="stylesheet" href="/styles/resource.css">
+    <link rel="stylesheet" href="/styles/reports.css">
+    <script src="/scripts/reports.js"></script>
+    <%- include('partials/notifications.ejs') %>
+
+    <%- include('partials/navbar.ejs') %>
+</head>
+<body>
+
+    <div class="folder-container">
+        <h1>
+            Reports
+        </h1>
+
+
+        <div class="dropdown">
+            <input type="checkbox" id="dropdown">
+
+            <label class="dropdown__face" for="dropdown">
+            <div class="dropdown__text"><i data-feather="folder"></i>2024</div>
+
+            <div class="dropdown__arrow"></div>
+            </label>
+
+            <ul class="dropdown__items">
+                <a href="#"><i data-feather="file"></i>August</a>
+            </ul>
+        </div>
+
+        <svg class="reportsdrop">
+            <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+            <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+        </svg>
+    </div>
+
+
+
+</body>
+</html>
