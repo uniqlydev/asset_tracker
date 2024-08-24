@@ -6,16 +6,23 @@
     <title>Records</title>
     <link rel="stylesheet" href="/styles/resource.css">
     <link rel="stylesheet" href="/styles/records.css">
-    <script src="/scripts/records.js"></script>
+    <script defer src="/scripts/records.js"></script>
 </head>
 <body>
     <div class="box">
         <% records.forEach((record, index) => { %>
-            <% if (index % 3 === 0) { %> <!-- Start a new list every 3 records -->
+            <% if (index % 3 === 0) { %>
                 <ul class="dynamic-list">
             <% } %>
 
-            <li>
+            <li class="record-item"
+                data-id="<%= record.id %>"
+                data-description="<%= record.description %>"
+                data-created_by="<%= record.created_by %>"
+                data-origin_site_name="<%= record.origin_site_name %>"
+                data-destination_site_name="<%= record.destination_site_name %>"
+                data-created_at="<%= new Date(record.created_at).toLocaleString('en-US') %>">
+
                 <span></span>
                 <div class="title"><%= record.id %></div>
                 <div class="info"><%= record.description %></div>
@@ -29,7 +36,7 @@
                 </div>
             </li>
 
-            <% if (index % 3 === 2 || index === records.length - 1) { %> <!-- Close the list after 3 records or at the end -->
+            <% if (index % 3 === 2 || index === records.length - 1) { %>
                 </ul>
                 <div class="arrow" id="btn<%= Math.floor(index / 3) + 1 %>">
                     <!-- SVG code here -->
@@ -38,45 +45,110 @@
         <% }) %>
     </div>
 
-    <div class="right-side-panel" id = "right-side-panel">
+    <div class="right-side-panel" id="right-side-panel">
         <div class="window-controls">
-            <div class="window-control close"></div>
-            <div class="window-control minimize"></div>
-            <div class="window-control maximize"></div>
-        </div>
-        <h1 class="title">Laptop</h1>
-        <div class="status">
-            Status:
-            <span>In Process</span>
+            <div class="window-control close" onclick="closePanel()">
+                <i data-feather="chevrons-left"></i>
+            </div>
         </div>
         <br>
-        <div class="info">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            ultricies, nunc nec vehicula ultricies, nunc nec vehicula ultricies, nunc nec vehicula
+        <h1 class="title">Asset Details</h1>
+        <div class="status">
+            Status:
+            <span id="status">In Process</span>
+        </div>
+        <br>
+        <div class="info" id="record-info">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </div>
         <br>
         <h2>
             Transfer Details
         </h2>
         <div class="name">
-            Origin: <span>Manila branch</span>
+            Origin: <span id="origin-site">-</span>
         </div>
         <div class="name">
-            Destination: <span>Manila branch</span>
+            Destination: <span id="destination-site">-</span>
         </div>
         <div class="name">
-            Created by: <span>John Doe</span>
+            Created by: <span id="created-by">-</span>
+        </div>
+
+
+        <br>
+        <h2>
+            Comments
+        </h2>
+
+        <div class="comment-section">
+            <form action="">
+                <textarea class="dynamic-textarea" placeholder="Leave a comment.."></textarea>
+            </form>
+            <div class="comments">
+                <ul>
+                    <li>
+                        <div class="comment-item">
+                            <h3>John Doe</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="comment-item">
+                            <h3>John Doe</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="comment-item">
+                            <h3>John Doe</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="comment-item">
+                            <h3>John Doe</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="comment-item">
+                            <h3>John Doe</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="comment-item">
+                            <h3>John Doe</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="comment-item">
+                            <h3>John Doe</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="comment-item">
+                            <h3>John Doe</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <br>
-
+        <h2>
+            Tags
+        </h2>
         <div class="tags">
             <div class="tag">Laptop</div>
             <div class="tag">Electronics</div>
             <div class="tag">Office</div>
         </div>
     </div>
-
 
     <%- include('partials/navbar.ejs') %>
 </body>

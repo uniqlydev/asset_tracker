@@ -1,24 +1,18 @@
-body {
-    display: flex;
-    justify-content: space-between; /* Distributes space between the .box and .right-side-panel */
-    padding: 20px; /* Optional: Adds padding around the page */
-    margin: 0; /* Removes default margin */
-    box-sizing: border-box; /* Ensures padding and border are included in element's width and height */
-}
-
 .box {
     width: 70%; /* Adjust width to allow space for the .right-side-panel */
     margin-right: 20px; /* Optional: Adds space between the .box and .right-side-panel */
 }
 
+/* Right-side panel styling */
 .right-side-panel {
+    display: none;
     position: fixed;
     top: 20px;
     right: 20px;
     width: 300px;
     height: 90%;
-    background: var(--secondary-bg); /* Light blue background */
-    color: var(--text-color); /* Dark blue text */
+    background: var(--secondary-bg); /* Background color */
+    color: var(--text-color); /* Text color */
     padding: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
@@ -28,30 +22,36 @@ body {
     overflow-y: auto; /* Allows scrolling if content exceeds the height */
 }
 
-.window-controls {
+/* Container for window controls at the top left */
+.right-side-panel .window-controls {
     display: flex;
+    align-items: center;
     justify-content: flex-start;
-    gap: 8px;
-    margin-bottom: 10px;
+    padding: 0;
+    background-color: var(--secondary-bg); /* Secondary background color */
+    position: relative; /* Ensures it stays in the correct position */
 }
 
+/* Individual window control button */
 .window-control {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #ff5f57; /* Red for close button */
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px; /* Width of control button */
+    height: 24px; /* Height of control button */
+    margin-right: 10px; /* Space between buttons */
     cursor: pointer;
+    color: var(--muted-text); /* Text color for icons */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
 }
 
-.window-control.minimize {
-    background-color: #ffbd2e; /* Yellow for minimize button */
+/* Feather icon styling */
+.window-control i {
+    width: 16px; /* Size of the Feather icon */
+    height: 16px;
 }
 
-.window-control.maximize {
-    background-color: #28c840; /* Green for maximize button */
-}
-
+/* Title styling */
 .title {
     font-size: 18px;
     font-weight: bold;
@@ -60,6 +60,7 @@ body {
     color: var(--text-color);
 }
 
+/* Status styling */
 .status {
     font-size: 14px;
     font-weight: 500;
@@ -71,12 +72,14 @@ body {
     font-weight: bold;
 }
 
+/* Info styling */
 .info {
     font-size: 12px;
     line-height: 1.6;
     color: var(--muted-text); /* Muted text for additional info */
 }
 
+/* Name styling */
 .name {
     font-size: 14px;
     margin: 5px 0;
@@ -87,18 +90,21 @@ body {
     color: var(--accent-color); /* Accent color for details */
 }
 
+/* Heading 2 styling */
 h2 {
-    font-size: 16px;
+    font-size: 14px;
     margin-bottom: 10px;
-    color: var(--text-color);
+    color: var(--muted-text);
 }
 
+/* Tags container styling */
 .tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
 }
 
+/* Individual tag styling */
 .tag {
     background-color: var(--accent-color); /* Accent color for tags */
     color: #ffffff; /* White text for tags */
@@ -152,6 +158,12 @@ h2 {
     line-height: 1.5;
     width: 30%; /* Adjust width for better centering */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+
+.box ul li:hover {
+    background: var(--primary-bg);
 }
 
 .box ul li > span {
@@ -252,4 +264,58 @@ h2 {
     50% {
         top: 106%;
     }
+}
+
+.comment-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+textarea.dynamic-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--muted-text);
+    border-radius: 5px;
+    font-family: var(--font);
+    font-size: 14px;
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+    resize: none; /* Prevent manual resizing */
+    overflow: hidden; /* Hide scrollbars */
+    background-color: var(--secondary-bg);
+}
+
+textarea.dynamic-textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.comments {
+    margin-top: 20px;
+}
+
+.comments ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.comment-item {
+    padding: 10px;
+    background: var(--secondary-bg);
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.comment-item h3 {
+    margin: 0;
+    font-size: 14px;
+    color: var(--accent-color);
+}
+
+.comment-item p {
+    margin: 5px 0 0;
+    font-size: 12px;
+    color: var(--muted-text);
 }
