@@ -24,36 +24,79 @@
             </h1>
         </div>
         <div class="right">
-            <div class="form-container">
-                <h1 class="label-form">Transfer Form</h1>
-                <form id="dashboard-form">
-                    <div class="form-group">
-                        <label for="id">
-                            <i data-feather="code" class="icon"></i>ID:
-                        </label>
-                        <input type="text" id="id" name="id" required>
+
+            <tab-container>
+                <!-- TAB CONTROLS -->
+                <input type="radio" id="tabToggle01" name="tabs" value="1" checked />
+                <label class = "tabcontroller" for="tabToggle01" checked="checked">Transfer</label>
+                <input type="radio" id="tabToggle02" name="tabs" value="2" />
+                <label class = "tabcontroller" for="tabToggle02">Receive</label>
+                <tab-content>
+                    <div class="form-container">
+                        <h1 class="label-form">Transfer Form</h1>
+                        <form id="dashboard-form">
+                            <div class="form-group">
+                                <label for="id">
+                                    <i data-feather="code" class="icon"></i>ID:
+                                </label>
+                                <input type="text" id="id" name="id" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">
+                                    <i data-feather="package" class="icon"></i>Quantity:
+                                </label>
+                                <input type="number" id="quantity" name="quantity" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="where">
+                                    <i data-feather="map-pin" class="icon"></i>Where:
+                                </label>
+                                <input type="text" id="where" name="where" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="Description">
+                                    <i data-feather="file-text" class="icon"></i>Description:
+                                </label>
+                                <input type="text" id="description" name="Description" required>
+                            </div>
+                            <button type="button" id="submitbtn">Submit</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="quantity">
-                            <i data-feather="package" class="icon"></i>Quantity:
-                        </label>
-                        <input type="number" id="quantity" name="quantity" required>
+                </tab-content>
+                <tab-content>
+                    <div class="form-container">
+                        <h1 class="label-form">Receive</h1>
+                        <form id="dashboard-form">
+                            <div class="form-group">
+                                <label for="id">
+                                    <i data-feather="code" class="icon"></i>ID:
+                                </label>
+                                <input type="text" id="id" name="id" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">
+                                    <i data-feather="package" class="icon"></i>Quantity:
+                                </label>
+                                <input type="number" id="quantity" name="quantity" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="where">
+                                    <i data-feather="map-pin" class="icon"></i>Where:
+                                </label>
+                                <input type="text" id="where" name="where" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="Description">
+                                    <i data-feather="file-text" class="icon"></i>Description:
+                                </label>
+                                <input type="text" id="description" name="Description" required>
+                            </div>
+                            <button type="button" id="submitbtn">Submit</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="where">
-                            <i data-feather="map-pin" class="icon"></i>Where:
-                        </label>
-                        <input type="text" id="where" name="where" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="Description">
-                            <i data-feather="file-text" class="icon"></i>Description:
-                        </label>
-                        <input type="text" id="description" name="Description" required>
-                    </div>
-                    <button type="button" id="submitbtn">Submit</button>
-                </form>
-            </div>
+                </tab-content>
+
+            </tab-container>
         </div>
     </div>
 

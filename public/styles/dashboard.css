@@ -31,7 +31,7 @@ body {
     max-width: 600px;
     width: 100%;
     padding: 50px;
-    border-radius: 8px;
+        border-radius: 0em 0.5em 0.5em 0.5em;
     background-color: var(--primary-bg); /* White background for better visibility */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding shadow for form-container */
     position: relative; /* Set position relative to use absolute positioning for the button */
@@ -150,4 +150,54 @@ h1 {
     z-index: -1;
     opacity: 0.3;
     animation: gooeyEffect 0.5s ease-in-out;
+}
+
+/* Tab Container */
+tab-container {
+    display: grid;
+    width: 80%;
+    margin-top: 50px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    border: solid rgba(255, 255, 255, 0.03);
+    border-radius: .5em;
+}
+
+/* Hide Radio Inputs */
+input[type="radio"] {
+    display: none;
+}
+
+/* Label Styles */
+label {
+    cursor: pointer;
+    padding: 1em;
+    text-align: center;
+    background-color: var(--primary-bg);
+    color: var(--page-text-color);
+    border-right: solid 2px var(--page-background-color);
+    transition: all 250ms;
+    border-radius: 0.5em 0.5em 0 0;
+}
+
+label:last-of-type {
+    border-right: none; /* Remove the border from the last tab */
+}
+
+/* Active Tab Style */
+input[type="radio"]:checked + label {
+    color: var(--primary-bg);
+    background-color: var(--accent-color);
+}
+
+/* Tab Content */
+tab-content {
+    display: none;
+    grid-column: 1 / -1;
+}
+
+/* Display the Active Tab Content */
+input[type="radio"]#tabToggle01:checked ~ tab-content:nth-of-type(1),
+input[type="radio"]#tabToggle02:checked ~ tab-content:nth-of-type(2) {
+    display: block;
 }
