@@ -1,3 +1,114 @@
+body {
+    display: flex;
+    justify-content: space-between; /* Distributes space between the .box and .right-side-panel */
+    padding: 20px; /* Optional: Adds padding around the page */
+    margin: 0; /* Removes default margin */
+    box-sizing: border-box; /* Ensures padding and border are included in element's width and height */
+}
+
+.box {
+    width: 70%; /* Adjust width to allow space for the .right-side-panel */
+    margin-right: 20px; /* Optional: Adds space between the .box and .right-side-panel */
+}
+
+.right-side-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    height: 90%;
+    background: var(--secondary-bg); /* Light blue background */
+    color: var(--text-color); /* Dark blue text */
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    font-family: var(--font);
+    overflow-y: auto; /* Allows scrolling if content exceeds the height */
+}
+
+.window-controls {
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.window-control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ff5f57; /* Red for close button */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.window-control.minimize {
+    background-color: #ffbd2e; /* Yellow for minimize button */
+}
+
+.window-control.maximize {
+    background-color: #28c840; /* Green for maximize button */
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.status {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.status span {
+    color: var(--accent-color); /* Accent color for status text */
+    font-weight: bold;
+}
+
+.info {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--muted-text); /* Muted text for additional info */
+}
+
+.name {
+    font-size: 14px;
+    margin: 5px 0;
+    color: var(--text-color);
+}
+
+.name span {
+    color: var(--accent-color); /* Accent color for details */
+}
+
+h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    background-color: var(--accent-color); /* Accent color for tags */
+    color: #ffffff; /* White text for tags */
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
 /* Scope all styles within the .box class to avoid conflicts with other elements */
 .box ul {
     list-style-type: none;
