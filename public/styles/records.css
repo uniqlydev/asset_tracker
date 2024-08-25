@@ -1,5 +1,5 @@
 .box {
-    width: 70%; /* Adjust width to allow space for the .right-side-panel */
+    width: 90%; /* Adjust width to allow space for the .right-side-panel */
     margin-right: 20px; /* Optional: Adds space between the .box and .right-side-panel */
 }
 

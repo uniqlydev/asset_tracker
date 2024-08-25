@@ -38,17 +38,31 @@ const wss = new ws.Server({ server });
 wss.on('connection', (ws: ws.WebSocket) => {
     console.log('New client connected');
 
-    ws.on('message', (message: ws.MessageEvent) => {
-        console.log('Received message:', message);
+    ws.on('message', (message: string) => {
+        const data = JSON.parse(message);
+
+        if (data.type === 'new-comment') {
+            // Broadcast the new comment to all connected clients
+            wss.clients.forEach(client => {
+                if (client.readyState === ws.OPEN) {
+                    client.send(JSON.stringify({
+                        type: 'new-comment',
+                        asset_id: data.asset_id,
+                        comment: data.comment,
+                        useremail: data.useremail,
+                        created_at: data.created_at
+                    }));
+                }
+            });
+        }
     });
 
     ws.on('close', () => {
         console.log('Client disconnected');
     });
-
-    // Send initial message to the client
-    ws.send(JSON.stringify({ type: 'initial', message: 'Connected to WebSocket' }));
 });
+
+
 
 // Routes
 app.use('/api/users', require('./routers/userRouter.ts'));
@@ -78,6 +92,7 @@ app.get('/records', async (req, res) => {
 
     const query = `
     SELECT
+        at.asset_id AS real_id,
         a.name AS id,
         at.description as description,
         s_origin.name AS origin_site_name,

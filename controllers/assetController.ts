@@ -1,5 +1,6 @@
 import TransferRequest from "../Interface/TransferReqest";
 import AssetTransfer from "../models/assetTransfer";
+import CommentInterface from "../Interface/CommentInterface";
 import pool from "../models/database";
 
 
@@ -31,5 +32,58 @@ const transferAsset = async (req: TransferRequest, res: any) => {
     }
 };
 
+const leaveAComment = async (req: CommentInterface, res: any) => {
+    const { asset_id, comment } = req.body;
+    const useremail = req.session.user!.email; // Retrieve user email from session
 
-export { transferAsset };
+    // Insert the comment into the database
+    const query = `INSERT INTO asset_comments (asset_id, useremail, comment) VALUES ($1, $2, $3) RETURNING *`;
+    const values = [asset_id, useremail, comment];
+
+    pool.query(query, values, (err: any, result: { rows: any[]; }) => {
+        if (err) {
+            console.error('Error inserting comment:', err);
+            return res.status(500).json({ error: 'Database error' });
+        }
+
+        const newComment = result.rows[0];
+
+        // Respond with the new comment data including useremail
+        res.json({
+            asset_id: newComment.asset_id,
+            comment: newComment.comment,
+            useremail: newComment.useremail,
+            created_at: newComment.created_at
+        });
+    });
+};
+
+const loadComments = async (req: any, res:any) => {
+    const assetId = req.params.asset_id;
+
+    const query = `
+    SELECT
+        ac.comment,
+        ac.created_at,
+        u.username AS useremail
+    FROM
+        asset_comments ac
+    JOIN
+        users u ON ac.useremail = u.email
+    WHERE
+        ac.asset_id = $1
+    ORDER BY
+        ac.created_at ASC
+    `;
+
+    try {
+        const result = await pool.query(query, [assetId]);
+        res.json(result.rows);
+    } catch (err) {
+        console.error('Failed to fetch comments:', err);
+        res.status(500).json({ message: 'Failed to fetch comments' });
+    }
+}
+
+
+export { transferAsset, leaveAComment, loadComments};

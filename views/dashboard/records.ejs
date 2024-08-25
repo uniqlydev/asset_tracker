@@ -10,39 +10,40 @@
 </head>
 <body>
     <div class="box">
-        <% records.forEach((record, index) => { %>
-            <% if (index % 3 === 0) { %>
+        <% for (let i = records.length - 1; i >= 0; i--) { %>
+            <% if ((records.length - 1 - i) % 3 === 0) { %>
                 <ul class="dynamic-list">
             <% } %>
 
             <li class="record-item"
-                data-id="<%= record.id %>"
-                data-description="<%= record.description %>"
-                data-created_by="<%= record.created_by %>"
-                data-origin_site_name="<%= record.origin_site_name %>"
-                data-destination_site_name="<%= record.destination_site_name %>"
-                data-created_at="<%= new Date(record.created_at).toLocaleString('en-US') %>">
+                real-id="<%= records[i].real_id %>"
+                data-id="<%= records[i].id %>"
+                data-description="<%= records[i].description %>"
+                data-created_by="<%= records[i].created_by %>"
+                data-origin_site_name="<%= records[i].origin_site_name %>"
+                data-destination_site_name="<%= records[i].destination_site_name %>"
+                data-created_at="<%= new Date(records[i].created_at).toLocaleString('en-US') %>">
 
                 <span></span>
-                <div class="title"><%= record.id %></div>
-                <div class="info"><%= record.description %></div>
-                <div class="name"><%= record.created_by %></div>
-                <div class="name"><%= record.destination_site_name %></div>
+                <div class="title"><%= records[i].id %></div>
+                <div class="info"><%= records[i].description %></div>
+                <div class="name"><%= records[i].created_by %></div>
+                <div class="name"><%= records[i].destination_site_name %></div>
                 <div class="time">
                     <span>
-                        <%= new Date(record.created_at).toLocaleString('en-US', { month: 'short', day: 'numeric' }) %><sup>th</sup>
+                        <%= new Date(records[i].created_at).toLocaleString('en-US', { month: 'short', day: 'numeric' }) %><sup>th</sup>
                     </span>
-                    <span><%= new Date(record.created_at).toLocaleTimeString('en-US') %></span>
+                    <span><%= new Date(records[i].created_at).toLocaleTimeString('en-US') %></span>
                 </div>
             </li>
 
-            <% if (index % 3 === 2 || index === records.length - 1) { %>
+            <% if ((records.length - 1 - i) % 3 === 2 || i === 0) { %>
                 </ul>
-                <div class="arrow" id="btn<%= Math.floor(index / 3) + 1 %>">
+                <div class="arrow" id="btn<%= Math.floor((records.length - 1 - i) / 3) + 1 %>">
                     <!-- SVG code here -->
                 </div>
             <% } %>
-        <% }) %>
+        <% } %>
     </div>
 
     <div class="right-side-panel" id="right-side-panel">
@@ -83,58 +84,11 @@
 
         <div class="comment-section">
             <form action="">
-                <textarea class="dynamic-textarea" placeholder="Leave a comment.."></textarea>
+                <textarea class="dynamic-textarea" placeholder="Leave a comment.." id="comment-area"></textarea>
             </form>
             <div class="comments">
                 <ul>
-                    <li>
-                        <div class="comment-item">
-                            <h3>John Doe</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="comment-item">
-                            <h3>John Doe</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="comment-item">
-                            <h3>John Doe</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="comment-item">
-                            <h3>John Doe</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="comment-item">
-                            <h3>John Doe</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="comment-item">
-                            <h3>John Doe</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="comment-item">
-                            <h3>John Doe</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="comment-item">
-                            <h3>John Doe</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </li>
+                    <!-- Dyanmically generated -->
                 </ul>
             </div>
         </div>
