@@ -72,6 +72,8 @@ const loadComments = async (req: any, res:any) => {
         users u ON ac.useremail = u.email
     WHERE
         ac.asset_id = $1
+    AND
+        ac.created_at
     ORDER BY
         ac.created_at ASC
     `;
